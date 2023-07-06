@@ -16,8 +16,6 @@ class Torrent(commands.Cog):
     async def search(self, ctx: Context, *, query):
         torrents = py1337x()
         results = torrents.search(query, sortBy='seeders')["items"]
-        print(type(results))
-        print(results)
         embed = nextcord.Embed(
             title=f"Torrents for \"{query}\"", color=nextcord.Color.random())
         if len(results) == 0:
@@ -38,11 +36,10 @@ class Torrent(commands.Cog):
     async def info(self, ctx: Context, *, query):
         torrents = py1337x()
         results = torrents.info(torrentId=query)
-        print(results)
         apiUrl = "https://tormag.ezpz.work/api/api.php?action=insertMagnets"
         data = {"magnets":
                 [
-                    results["magnetLink"]
+                results["magnetLink"]
                 ]
                 }
         res = requests.post(apiUrl, json=data)
