@@ -1,6 +1,8 @@
 import nextcord
 from nextcord.ext import commands
-from mytoken import token
+import os
+
+token = os.getenv("DISCORD_TOKEN")
 
 intents = nextcord.Intents.all()
 
